@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShieldAgent // Cybersecurity Workspace</title>
+    <!-- Google Fonts: Outfit & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Workspace Manager -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="ph-fill ph-shield-checkered"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>ShieldAgent</h1>
+                    <span>SEC-OPS CO-PILOT</span>
+                </div>
+            </div>
+
+            <div class="workspace-section">
+                <div class="section-header">
+                    <h2><i class="ph-bold ph-folder-open"></i> Knowledge Base</h2>
+                    <span id="doc-count" class="badge">0 files</span>
+                </div>
+                
+                <!-- Document List -->
+                <div class="document-list-container">
+                    <ul id="document-list" class="document-list">
+                        <!-- Loaded dynamically -->
+                    </ul>
+                    <div id="no-documents" class="empty-docs">
+                        <i class="ph ph-warning-circle"></i>
+                        <p>No documents indexed. Upload files below to train the agent.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Area -->
+            <div class="upload-section">
+                <h3><i class="ph-bold ph-upload-simple"></i> Index New Intel</h3>
+                <div id="drop-zone" class="drop-zone">
+                    <i class="ph-fill ph-cloud-arrow-up"></i>
+                    <p>Drag & drop TXT or MD files or <span>browse</span></p>
+                    <input type="file" id="file-input" multiple accept=".txt,.md" style="display: none;">
+                </div>
+                <div id="upload-status" class="upload-status"></div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <span class="status-dot online"></span>
+                    <span class="status-label">Local LLM Interface</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-workspace">
+            <header class="workspace-header">
+                <div class="model-info">
+                    <div class="info-badge">
+                        <i class="ph-bold ph-cpu"></i>
+                        <span>LLM: llama3.1</span>
+                    </div>
+                    <div class="info-badge">
+                        <i class="ph-bold ph-database"></i>
+                        <span>Embed: mxbai-embed-large</span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button id="clear-chat-btn" title="Clear Chat History">
+                        <i class="ph-bold ph-trash"></i>
+                        Clear Work history
+                    </button>
+                </div>
+            </header>
+
+            <!-- Messages Area -->
+            <div id="chat-messages" class="chat-messages">
+                <div class="message system-message">
+                    <div class="message-content">
+                        <i class="ph-fill ph-terminal-window"></i>
+                        <p><strong>System initialized.</strong> I am your cyber security research assistant. Put security logs, writeups, or documentation in the knowledge base and ask me questions. Logs will be permanently archived in <code>chat_history_archive.md</code>.</p>
+                    </div>
+                </div>
+                <!-- Dynamic messages go here -->
+            </div>
+
+            <!-- Input Controls -->
+            <footer class="chat-footer">
+                <form id="chat-form" class="chat-form">
+                    <div class="input-wrapper">
+                        <i class="ph ph-terminal input-icon"></i>
+                        <input type="text" id="chat-input" placeholder="Type a security query or command (e.g. explain recent malware campaigns)..." autocomplete="off" required>
+                        <button type="submit" id="send-btn" class="send-btn">
+                            <i class="ph-fill ph-paper-plane-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="main.js"></script>
+</body>
+</html>
